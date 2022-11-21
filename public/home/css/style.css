@@ -52,8 +52,9 @@ body {
 }
 
 .main-form {
-  margin: 80px 200px 0px 0px;
+  margin: 40px 200px 0px 0px;
   background: rgba(0, 0, 0, 0.486);
+  box-shadow: 9px 9px 9px -3px rgba(0, 0, 0, 0.75);
 }
 
 .form-groups {

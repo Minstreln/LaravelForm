@@ -14,8 +14,7 @@
     <!-- Custom styles for this form -->
     <link href="{{asset('home/css/style.css')}}" rel="stylesheet" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Document</title>
+    <title>School Mangement</title>
 </head>
 <body>
 
@@ -31,7 +30,9 @@
 
         <div class="main-form">
 
-            <form action="" method="POST">
+            <form action="{{asset(route('register'))}}" method="POST">
+
+                @csrf
 
                 <div class="form-header">
 
@@ -44,31 +45,58 @@
                     </div>
                 </div>
 
+                @if (session()->has('message'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    {{session()->get('message')}}
+                </div>
+                @endif
+
                 <div class="forms">
 
                     <div class="form-groups">
                         <label for="firstname">First Name</label> <br>
-                        <input type="text" name="firstname" placeholder="Enter Firstname" required>
+                        <input type="text" name="firstname" placeholder="Enter Firstname" value="{{old('firstname')}}" required>
+                        @if($errors)
+                            @error('firstname')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
+                         @endif
                     </div>
     
                     <div class="form-groups">
                         <label for="lastname">Last Name</label> <br>
-                        <input type="text" name="lastname" placeholder="Enter Lastname" required>
+                        <input type="text" name="lastname" placeholder="Enter Lastname" value="{{old('lastname')}}" required>
+                        @if($errors)
+                            @error('lastname')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
+                        @endif
                     </div>
     
                     <div class="form-groups">
                         <label for="email">Email</label> <br>
-                        <input type="email" name="email" placeholder="Enter Email" required>
+                        <input type="email" name="email" placeholder="Enter Email" value="{{old('email')}}" required>
+                        @if($errors)
+                            @error('email')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
+                        @endif
                     </div>
     
                     <div class="form-groups">
                         <label for="password">Password</label> <br>
-                        <input type="number" name="password_confirmation" placeholder="Enter Password" required>
+                        <input type="password" name="password" placeholder="Enter Password" required>
+                        @if($errors)
+                            @error('password')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
+                        @endif
                     </div>
     
                     <div class="form-groups">
                         <label for="password">Confirm Password</label> <br>
-                        <input type="number" name="confirm_password" placeholder="Re-Enter Password" required>
+                        <input type="password" name="password_confirmation" placeholder="Re-Enter Password" required>
                     </div>
 
 
